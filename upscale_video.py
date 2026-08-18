@@ -1,10 +1,14 @@
+# type: ignore
+# pyright: reportMissingImports=false, reportMissingTypeStubs=false
+# pyre-ignore-all-errors
+
 import os
-import cv2
-import torch
-import ffmpeg
+import cv2  # type: ignore
+import torch  # type: ignore
+import ffmpeg  # type: ignore
 import argparse
-import numpy as np
-from tqdm import tqdm
+import numpy as np  # type: ignore
+from tqdm import tqdm  # type: ignore
 
 # ===============================
 # CONFIG (Default Settings)
@@ -257,10 +261,10 @@ def main():
     # ===============================
     if use_gpu:
         try:
-            from RealESRGAN import RealESRGAN
+            from RealESRGAN import RealESRGAN  # type: ignore
         except ImportError:
             try:
-                from realesrgan import RealESRGAN
+                from realesrgan import RealESRGAN  # type: ignore
             except ImportError:
                 print(
                     "[ERROR] RealESRGAN package not found. Run: pip install git+https://github.com/ai-forever/Real-ESRGAN.git"
