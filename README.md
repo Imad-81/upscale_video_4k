@@ -1,7 +1,7 @@
 # 🎥 AI Video Enhancer & Upscaler
 
 A **local-first, privacy-friendly AI video upscaling tool** built in Python.  
-Upscale videos to **1080p and 4K** using **Real-ESRGAN (AI)** with automatic fallback to **FSRCNN (CPU)**.
+Upscale videos to **1080p (or any target resolution)** using **Real-ESRGAN (AI)** with automatic fallback to **FSRCNN (CPU)**.
 
 No cloud. No uploads. Fully offline.
 
@@ -18,9 +18,9 @@ No cloud. No uploads. Fully offline.
 - Automatically switches to OpenCV **FSRCNN**  
 - Works on CPU-only systems without configuration  
 
-### 1080p → 4K Pipeline
-- AI upscale to 1080p  
-- High-quality **Lanczos interpolation** for 4K delivery  
+### Single-Pass Direct Delivery
+- AI upscale directly to your desired resolution (default: 1080p)
+- High-quality **Lanczos interpolation** for aspect ratio fitting  
 
 ### Aspect Ratio Handling
 - Automatic **4:3 → 16:9** correction  
@@ -106,16 +106,35 @@ Ensure `ffmpeg` is added to PATH.
 ---
 
 ## 🛠 Usage
-Rename your input video to match the default name OR update the `INPUT_VIDEO` variable in the script.
 
+You can pass the video path and target resolution directly from the terminal command line. The default resolution is **1920x1080** (1080p).
+
+### Basic Command (Default: 1920x1080)
 ```bash
-python upscale_video.py
+python upscale_video.py path/to/your_video.mp4
+```
+
+### Custom Resolution
+Specify any target resolution (e.g. `1920x1080`, `1280x720`, `3840x2160`, or presets like `1080p`, `720p`, `4k`):
+```bash
+python upscale_video.py path/to/your_video.mp4 1920x1080
+python upscale_video.py path/to/your_video.mp4 4k
+```
+
+### Custom Output Path
+```bash
+python upscale_video.py path/to/your_video.mp4 1920x1080 -o output.mp4
+```
+
+### Using Flags
+```bash
+python upscale_video.py -i input.mp4 -r 1920x1080 -o output.mp4
 ```
 
 ### Output
-- AI-enhanced 1080p video
-- High-quality 4K video
-- Original audio preserved
+- Video upscaled directly to your target resolution (default 1920x1080)
+- Original audio preserved and losslessly muxed
+- Automatic aspect ratio handling (pillarbox/letterbox with `--fit-mode pad`, or `stretch`/`crop`)
 
 ---
 

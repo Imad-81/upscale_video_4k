@@ -18,16 +18,18 @@ Thumbs.db
 *.pth
 *.pb
 models/*.pb
+weights/
 
 # Ignore video files
 *.mp4
 *.mkv
 *.mov
 *.avi
-temp_audio.aac
+temp_audio*.aac
 
 # Temporary files
 *.tmp
+output/
 
 
 /venv310
